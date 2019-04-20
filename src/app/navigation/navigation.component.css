@@ -1,0 +1,6 @@
+.selected {
+	border-radius: 15px;
+	border: 2px solid #123;
+	border-color: darkgreen;
+	background-color: #b2f3b2;
+}

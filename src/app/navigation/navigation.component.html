@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="nav-link" href="/dashboard" 
+	[class.selected]="currentNavigation === 'Dashboard'">Dashboard</a>
+
+	<a class="nav-link" href="/transactions"
+	[class.selected]="currentNavigation === 'Transactions'">Transactions</a>
+
+	<a class="nav-link" href="/profile">Profile</a>
+
+	<a class="nav-link" href="/logout">Logout</a>
+</nav>

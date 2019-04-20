@@ -1,0 +1,7 @@
+.transaction-item-list {
+	padding: 5px;
+	background-color: #F0F0F0;
+}
+.transaction-item-list:hover {
+	background-color: yellow;
+}

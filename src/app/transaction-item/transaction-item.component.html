@@ -1,0 +1,23 @@
+<div>
+	<app-navigation [currentNavigation]="'Transactions'"></app-navigation>
+</div>
+
+<div class="container mt-2">
+	<div>
+	</div>
+	<hr/>
+	<div>
+		<div *ngFor="let item of items" class="row transaction-item-list">
+			<div class="col">
+				<div>ISIN: {{item.isin}}</div>
+			</div>
+			<div class="col">
+				€ {{item.valuePerAmount}}
+			</div>
+			<div class="col">
+				{{item.getTypeName()}}
+			</div>
+		</div>
+	</div>
+
+</div>

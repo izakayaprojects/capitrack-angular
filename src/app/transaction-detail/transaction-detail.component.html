@@ -1,0 +1,12 @@
+<button (click)="goBack()">&lt; Back to My Transactions</button>
+<div *ngIf="item">
+	<h3>Transaction ID: {{item.id}}</h3>
+	<div class="detail">
+		<b>ISIN</b>: {{item.isin}}<br/>
+		<b>Amount</b>: {{item.amount}}<br/>
+		<b>Timestamp</b>: {{item.timestamp}}
+	</div>
+	<label>Add note here:
+		<input [(ngModel)]="item.note" placeholder="{{item.note}}"/>
+	</label>
+</div>

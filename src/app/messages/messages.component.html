@@ -1,0 +1,12 @@
+<div *ngIf="messageService.messages.length">
+
+	<h3>Messages from Capitrack!</h3>
+
+	<ul>
+		<li *ngFor='let msg of messageService.messages'>
+			<i>{{ msg }}</i>
+		</li>
+	</ul>
+
+	<button (click)="messageService.clear()">Clear messages</button>
+</div>
