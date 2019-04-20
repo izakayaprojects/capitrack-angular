@@ -1,0 +1,16 @@
+<div>
+	<h3>Add new Transaction</h3>
+	<hr/>
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" 
+			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			{{ selectedTransactionType.name }}
+	  	</button>
+	  	<div class="dropdown-menu">
+	  		<a *ngFor="let type of transactionTypes" class="dropdown-item" 
+	  			(click)="onPickTransactionType(type._id)">
+	  			{{ type.name }}
+	  		</a>
+	  	</div>
+	</div>
+</div>

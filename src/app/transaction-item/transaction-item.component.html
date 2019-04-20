@@ -5,16 +5,17 @@
 <div class="container mt-2">
 
 	<div class="">
-		// Filter here
 	</div>
 	<hr/>
 	<div class="row">
+		
 		<div class="col-sm-2">
 			<div class="m-2">
-				<a href="">Add Transaction</a><br/>
-				<a href="">Add Stock</a><br/>
+				<div class="menu-item" (click)="showNewTransactionWindow()">Add Transaction</div>
+				<div class="menu-item">Add Stock</div>
 			</div>
 		</div>
+
 		<div class="col-sm-10">
 			<div *ngFor="let item of items" class="row transaction-item-list mb-1">
 				<div class="col-sm-2">

@@ -11,10 +11,26 @@
 	color:red;
 }
 
+.action-icon {
+	cursor: pointer;
+}
+
 .action-icon:hover {
 	opacity: .5;
     transition: opacity .25s ease-out;
     -moz-transition: opacity .25s ease-out;
     -webkit-transition: opacity .25s ease-out;
     -o-transition: opacity .25s ease-out;
+}
+
+.menu-item {
+	padding: 5px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.menu-item:hover {
+	color: darkblue;
+	background-color: lightgreen;
+	transition: background 0.25s linear;
 }

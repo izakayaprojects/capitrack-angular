@@ -36,6 +36,13 @@ export class TransactionItemService {
       }))
   }
 
+  getTransactionTypes() {
+    return this.http.get(API_ENV.debug.url+"/transaction_types")
+      .pipe(map(result => {
+        return result["data"];
+      }))
+  }
+
   getMockTransactionItems(): Observable<TransactionItem[]> {
   	this.messageService.add("Retrieving transactions...");
   	return of(MOCK_TRANSACTION_ITEMS);
