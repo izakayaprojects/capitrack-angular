@@ -22,11 +22,6 @@ export class TransactionItemComponent implements OnInit {
     this.tiService.getTransactions().subscribe(results => this.items = results)
   }
 
-  searchByISIN(isin: string): void {
-    this.tiService.getMockTransactionItems()
-      .subscribe(mockItems => this.items = mockItems.filter(item => item.isin.includes(isin)))
-  }
-
   onSelect(transactionitem: TransactionItem) {
   	this.selectedItem = transactionitem
   }

@@ -10,6 +10,7 @@ export class Factory {
 			object["isin"], 
 			object["artifact_count"],
 			object["typeid"])
+		ti.stock.name = object["stock_name"];
 		ti.valuePerAmount = object["artifact_value_per_count"];
 		ti.timestamp = object["created_at"];
 		return ti;

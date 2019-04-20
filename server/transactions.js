@@ -19,7 +19,7 @@ module.exports = {
 			if (userid == undefined || userid == "") {
 				rej({error: -1, message: "User Id is empty!"})
 			} else {
-				let query = "SELECT trx._id, isin.isin, isin.name, type._id AS typeid, type.name, trx.artifact_count, trx.artifact_value_per_count, trx.extras, trx.created_at"
+				let query = "SELECT trx._id, isin.isin, isin.name AS stock_name, type._id AS typeid, type.name, trx.artifact_count, trx.artifact_value_per_count, trx.extras, trx.created_at"
 					+" FROM tbl_transactions AS trx"
 					+" INNER JOIN tbl_isin AS isin ON trx.isin_id = isin.isin"
 					+" INNER JOIN tbl_transaction_types AS type ON trx.trans_type_id = type._id";

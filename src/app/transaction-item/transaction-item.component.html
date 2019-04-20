@@ -3,19 +3,42 @@
 </div>
 
 <div class="container mt-2">
-	<div>
+
+	<div class="">
+		// Filter here
 	</div>
 	<hr/>
-	<div>
-		<div *ngFor="let item of items" class="row transaction-item-list">
-			<div class="col">
-				<div>ISIN: {{item.isin}}</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<div class="m-2">
+				<a href="">Add Transaction</a><br/>
+				<a href="">Add Stock</a><br/>
 			</div>
-			<div class="col">
-				€ {{item.valuePerAmount}}
-			</div>
-			<div class="col">
-				{{item.getTypeName()}}
+		</div>
+		<div class="col-sm-10">
+			<div *ngFor="let item of items" class="row transaction-item-list mb-1">
+				<div class="col-sm-2">
+					<span class="badge badge-primary">{{item.getTypeName()}}</span>
+				</div>
+				<div class="col-sm-5">
+					<div *ngIf="item.type === 2 || item.type === 3 || item.type === 4">
+						<div>ISIN: {{item.stock.isin}}</div>
+						<div class="text-muted small">{{item.stock.name}}</div>
+						<div class="text-muted small">{{item.amount}} x € {{item.valuePerAmount}}</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="positive" *ngIf="item.type === 1 || item.type === 2 || item.type === 4">
+						+ € {{item.amount * item.valuePerAmount}}
+					</span>
+					<span class="negative" *ngIf="item.type === 3 || item.type === 5 || item.type === 6">
+						- € {{item.amount * item.valuePerAmount}}
+					</span>
+				</div>
+				<div class="col-sm-2">
+					<span><img class="action-icon mr-3" src="assets/ic_edit.png"/></span>
+					<span><img class="action-icon" src="assets/ic_delete.png"/></span>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -7,21 +7,29 @@ export enum TransactionType {
 	Payout = 5
 }
 
+export class Stock {
+	isin: string;
+	name: string;
+
+	constructor() { }
+}
+
 export class TransactionItem {
 	id: string;
 	timestamp: string;
-	isin: string;
 	amount: number;
 	valuePerAmount: number;
+	stock: Stock;
 	type: TransactionType;
 	note: string;
 
 	constructor(id: string, isin: string, amount: number, type: TransactionType, note: string = "") {
 		this.id = id;
-		this.isin = isin;
 		this.amount = amount;
 		this.type = type;
 		this.note = note;
+		this.stock = new Stock();
+		this.stock.isin = isin;
 	}
 
 	public getTypeName(): string {

@@ -2,6 +2,19 @@
 	padding: 5px;
 	background-color: #F0F0F0;
 }
-.transaction-item-list:hover {
-	background-color: yellow;
+
+.positive {
+	color: green;
+}
+
+.negative {
+	color:red;
+}
+
+.action-icon:hover {
+	opacity: .5;
+    transition: opacity .25s ease-out;
+    -moz-transition: opacity .25s ease-out;
+    -webkit-transition: opacity .25s ease-out;
+    -o-transition: opacity .25s ease-out;
 }
