@@ -63,6 +63,24 @@ app.post("/api/transactions", function(req, res) {
 	})
 })
 
+app.post("/api/transactions/delete", function(req, res) {
+	res.setHeader("Content-Type", "application/json");
+	auth.get_user(req.body.token).then(function(user) {
+		if (user._id) {
+			trx.delete_transaction(user._id, req.body.transaction_id).then(function(result) {
+				res.status(200);
+				res.send(result);
+			}).catch(function(err) {
+				res.status(401);
+				res.send(err);
+			})
+		} else {
+			res.status(401);
+			res.send({error: -1, message: "Token is invalid!"})
+		}
+	})
+})
+
 // UNTESTED
 app.post("/api/transactions/add", function(req, res) {
 	res.setHeader("Content-Type", "application/json");

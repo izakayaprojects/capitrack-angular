@@ -1,12 +1,7 @@
-<div *ngIf="messageService.messages.length">
+<ngb-alert *ngIf="messageService.hasAlert()" 
+	[type]="messageService.getType()" 
+	(close)="messageService.clear()">
 
-	<h3>Messages from Capitrack!</h3>
-
-	<ul>
-		<li *ngFor='let msg of messageService.messages'>
-			<i>{{ msg }}</i>
-		</li>
-	</ul>
-
-	<button (click)="messageService.clear()">Clear messages</button>
-</div>
+	{{ messageService.getMessage() }}
+	
+</ngb-alert>

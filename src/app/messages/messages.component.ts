@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MessagesService } from "../messages.service";
+
+import { AlertMessage, AlertType } from "../_models/alert";
 
 @Component({
   selector: 'app-messages',

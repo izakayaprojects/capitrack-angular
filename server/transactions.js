@@ -26,7 +26,6 @@ module.exports = {
 				mysql.connection.query(query, [trx_id,userid,isin,type,amount,valPerAmount,timestamp],
 					function(err, results) {
 						if (err) {
-							console.log(err);
 							rej({error:-3, message: "Error inserting transaction!"})
 						} else {
 							res({transaction_id: trx_id})
@@ -37,6 +36,28 @@ module.exports = {
 
 	},
 
+	delete_transaction: function(userid, trxid) {
+		return new Promise(function(res, rej) {
+			if (userid == undefined || userid == "") {
+				rej({error: -2, message: "User Id is empty!"})
+			} else if (trxid == undefined || trxid == "") {
+				rej({error: -3, message: "Transaction Id is empty!"})
+			} else {
+				let query = "DELETE FROM tbl_transactions WHERE _id = ? AND user_id = ?"
+				mysql.connection.query(query, [trxid, userid], function(err, results) {
+					if (err) {
+						rej({error: -4, message: "Error deleting transaction!"})
+					} else {
+						res({success: true, 
+							deleted_transaction_id: trxid, 
+							deleted_transactions: results.affectedRows
+						})
+					}
+				})
+			}
+		})
+	},
+
 	get_all_transactions: function(userid) {
 		return new Promise(function(res, rej) {
 			if (userid == undefined || userid == "") {
@@ -44,7 +65,7 @@ module.exports = {
 			} else {
 				let query = "SELECT trx._id, isin.isin, isin.name AS stock_name, type._id AS typeid, type.name, trx.artifact_count, trx.artifact_value_per_count, trx.extras, trx.created_at"
 					+" FROM tbl_transactions AS trx"
-					+" INNER JOIN tbl_isin AS isin ON trx.isin_id = isin.isin"
+					+" LEFT JOIN tbl_isin AS isin ON trx.isin_id = isin.isin"
 					+" INNER JOIN tbl_transaction_types AS type ON trx.trans_type_id = type._id";
 				if (userid != undefined) {
 					query += " WHERE trx.user_id = '"+userid+"'";

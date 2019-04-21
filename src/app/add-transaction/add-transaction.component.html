@@ -50,6 +50,7 @@
 		</div>
 		<div *ngIf="selectedTransactionType.id !== -1">
 			<button class="btn btn-success" (click)="addTransaction()">Add</button>
+		    <div class="small text-danger">{{ errorMsgs.insertion }}</div>
 		</div>
 	</div>
 </div>

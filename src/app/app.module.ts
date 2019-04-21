@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
+import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/delete-transaction-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
     DashboardComponent,
     LoginComponent,
     NavigationComponent,
-    AddTransactionComponent
+    AddTransactionComponent,
+    DeleteTransactionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,9 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddTransactionComponent]
+  entryComponents: [
+    AddTransactionComponent, 
+    DeleteTransactionDialogComponent
+  ]
 })
 export class AppModule { }

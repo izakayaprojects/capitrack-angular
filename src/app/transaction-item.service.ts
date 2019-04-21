@@ -62,6 +62,14 @@ export class TransactionItemService {
       .pipe(map(result => result["transaction_id"]))
   }
 
+  deleteTransaction(trx: TransactionItem) {
+    let body = {
+      token: this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN),
+      transaction_id: trx.id
+    }
+    return this.http.post(API_ENV.debug.url+"/transactions/delete", body)
+  }
+
   getTransactionTypes() {
     return this.http.get(API_ENV.debug.url+"/transaction_types")
       .pipe(map(result => {

@@ -3,6 +3,7 @@
 </div>
 
 <div class="container mt-2">
+	<app-messages></app-messages>
 
 	<div class="">
 	</div>
@@ -37,8 +38,8 @@
 					</span>
 				</div>
 				<div class="col-sm-2">
-					<span><img class="action-icon mr-3" src="assets/ic_edit.png"/></span>
-					<span><img class="action-icon" src="assets/ic_delete.png"/></span>
+					<span><img class="action-icon mr-3" src="assets/ic_edit.png" (click)="onTrxEdit(item)"/></span>
+					<span><img class="action-icon" src="assets/ic_delete.png" (click)="onTrxDelete(item)"/></span>
 				</div>
 			</div>
 		</div>
