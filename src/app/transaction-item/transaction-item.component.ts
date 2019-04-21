@@ -34,7 +34,8 @@ export class TransactionItemComponent implements OnInit {
 
   showNewTransactionWindow() {
     this.mDialogNewTransaction = this.dialog.open(AddTransactionComponent, {
-      height: "400px"
+      height: "400px",
+      minWidth: "400px"
     });
   }
 }

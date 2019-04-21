@@ -63,6 +63,14 @@ app.post("/api/transactions", function(req, res) {
 	})
 })
 
+app.get("/api/stock/find", function(req, res) {
+	res.setHeader("Content-Type", "application/json");
+	trx.find_stock_by_name(req.query.search).then(function(stocks) {
+		res.status(200);
+		res.send(stocks);
+	})
+})
+
 app.post("/api/token_validity", function(req, res) {
 	res.setHeader("Content-Type", 'application/json');
 	auth.is_token_valid(req.body.token).then(function(tokenInfo) {

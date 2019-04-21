@@ -13,7 +13,6 @@ module.exports = {
 		})
 	},
 
-	// Untested
 	get_all_transactions: function(userid) {
 		return new Promise(function(res, rej) {
 			if (userid == undefined || userid == "") {
@@ -31,6 +30,15 @@ module.exports = {
 					res({data: results});
 				})
 			}
+		})
+	},
+
+	find_stock_by_name: function(name) {
+		return new Promise(function(res, rej) {
+			let query = "SELECT * from tbl_isin WHERE name LIKE '%"+name+"%' COLLATE utf8_general_ci";
+			mysql.connection.query(query, function(err, results) {
+				res({data: results});
+			})
 		})
 	}
 }

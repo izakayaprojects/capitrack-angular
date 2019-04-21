@@ -6,10 +6,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { MessagesService } from './messages.service';
 import { Factory } from './_models/factory';
-import { TransactionItem, TransactionType } from "./_models/transaction-item";
+import { TransactionItem, TransactionType, Stock } from "./_models/transaction-item";
 import { MOCK_TRANSACTION_ITEMS } from "./mocks/mock-transaction-items";
 
 import { API_ENV, CONSTANTS } from './global';
+
+const FACTORY = new Factory();
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +30,20 @@ export class TransactionItemService {
       .pipe(map(result => {
         let data = result["data"];
         let items: TransactionItem[] = [];
-        let factory = new Factory();
         for (let entry of data) {
-          items.push(factory.createTransactionItem(entry));
+          items.push(FACTORY.createTransactionItem(entry));
+        }
+        return items;
+      }))
+  }
+
+  findStocksByName(term: string) {
+    return this.http.get(API_ENV.debug.url+"/stock/find?search="+term)
+      .pipe(map(result => {
+        let data = result["data"];
+        let items: Stock[] = [];
+        for (let item of data) {
+          items.push(FACTORY.createStockItem(item));
         }
         return items;
       }))

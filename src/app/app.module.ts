@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from "@angular/material/dialog";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

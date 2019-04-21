@@ -1,16 +1,55 @@
 <div>
-	<h3>Add new Transaction</h3>
+	<h5>Add new Transaction</h5>
 	<hr/>
-	<div class="dropdown">
-		<button class="btn btn-primary dropdown-toggle" type="button" 
-			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<div ngbDropdown class="dropdown">
+		<button class="btn btn-primary" id="dropdown_trxtype" ngbDropdownToggle>
 			{{ selectedTransactionType.name }}
 	  	</button>
-	  	<div class="dropdown-menu">
-	  		<a *ngFor="let type of transactionTypes" class="dropdown-item" 
+	  	<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown_trxtype">
+	  		<button ngbDropdownItem *ngFor="let type of transactionTypes" 
 	  			(click)="onPickTransactionType(type._id)">
 	  			{{ type.name }}
-	  		</a>
+	  		</button>
 	  	</div>
+	</div>
+
+	<div *ngIf="newTransaction.type !== -1" class="mt-1">
+		<div class="form-group"
+			*ngIf="newTransaction.type === 2 || newTransaction.type === 3 || newTransaction.type === 4">
+
+			<ng-template #rt_stock let-r="result" let-t="term">
+				<ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+				<div class="small">{{r.isin}}</div>
+			</ng-template>
+
+		    <label for="trx_stock_name">Stock Name</label>
+		    <input type="text" class="form-control" id="trx_stock_name"
+		    	[(ngModel)]="newTransaction.stock" 
+		    	[ngbTypeahead]="findStock" 
+		    	[resultTemplate]="rt_stock"
+		    	[inputFormatter]="stockInputFormatter"/>
+		    <div class="small text-danger">{{ errorMsgs.stock }}</div>
+		</div>
+
+		<div class="form-group" 
+			*ngIf="newTransaction.type === 2 || newTransaction.type === 3 || newTransaction.type === 4">
+		    <label for="trx_amount">Amount</label>
+		    <input type="number" class="form-control" min="0" id="trx_amount" [(ngModel)]="newTransaction.amount"/>
+		</div>
+
+		<div class="form-group" *ngIf="selectedTransactionType.id !== -1">
+		    <label for="trx_value">Value <span *ngIf="newTransaction.type === 2 || newTransaction.type === 3 || newTransaction.type === 4">per amount</span>
+		    </label>
+		    <input type="number" step="0.01" class="form-control" id="trx_value" [(ngModel)]="newTransaction.valuePerAmount"/>
+		</div>
+
+		<div class="form-group" [class.has-error]="newTransaction.timestamp === null" *ngIf="selectedTransactionType.id !== -1">
+		    <label for="trx_date">Date</label>
+		    <input type="text" class="form-control" id="trx_amount" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" (dateSelect)="onDateSelected($event)" readonly/>
+		    <div class="small text-danger">{{ errorMsgs.timestamp }}</div>
+		</div>
+		<div *ngIf="selectedTransactionType.id !== -1">
+			<button class="btn btn-success" (click)="addTransaction()">Add</button>
+		</div>
 	</div>
 </div>
