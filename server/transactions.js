@@ -14,7 +14,7 @@ module.exports = {
 		})
 	},
 
-	add_transaction(): function(userid, type, isin, amount, valPerAmount, timestamp) {
+	add_transaction: function(userid, type, isin, amount, valPerAmount, timestamp) {
 		return new Promise(function(res, rej) {
 			if (userid == undefined || userid == "") {
 				rej({error: -2, message: "User Id is empty!"})
@@ -26,9 +26,10 @@ module.exports = {
 				mysql.connection.query(query, [trx_id,userid,isin,type,amount,valPerAmount,timestamp],
 					function(err, results) {
 						if (err) {
-							rej({error:-3, message: err})
+							console.log(err);
+							rej({error:-3, message: "Error inserting transaction!"})
 						} else {
-							result({transaction_id: trx_id})
+							res({transaction_id: trx_id})
 						}
 					})
 			}

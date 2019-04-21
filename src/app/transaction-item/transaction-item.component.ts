@@ -25,7 +25,11 @@ export class TransactionItemComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.tiService.getTransactions().subscribe(results => this.items = results)
+    this.getTransactions();
+  }
+
+  getTransactions() {
+    this.tiService.getTransactions().subscribe(results => this.items = results)  
   }
 
   onSelect(transactionitem: TransactionItem) {
@@ -37,5 +41,10 @@ export class TransactionItemComponent implements OnInit {
       height: "400px",
       minWidth: "400px"
     });
+    this.mDialogNewTransaction.afterClosed().subscribe(result => {
+      if (result !== undefined && result.refresh == true) {
+        this.getTransactions();
+      }
+    })
   }
 }

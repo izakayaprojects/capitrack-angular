@@ -30,4 +30,8 @@ export class Factory {
 		return new Date(dt.year, dt.month-1, dt.day);
 	}
 
+	public jsDateToSQLDate(dt: Date): String {
+		return dt.getFullYear()+"-"+(dt.getMonth()+1)+"-"+dt.getDate();
+	}
+
 }

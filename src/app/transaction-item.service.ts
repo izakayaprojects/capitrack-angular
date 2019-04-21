@@ -49,8 +49,17 @@ export class TransactionItemService {
       }))
   }
 
-  addTransaction(type: TransactionType, stock: Stock, timestamp: Date, amount: number, valuePerAmount: number) {
-    let token = this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN);
+  addTransaction(trx: TransactionItem) {
+    let body = {
+      token: this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN),
+      type: trx.type,
+      isin: trx.needStock() ? trx.stock.isin : "",
+      amount: trx.amount,
+      value: trx.valuePerAmount,
+      timestamp: FACTORY.jsDateToSQLDate(trx.timestamp)
+    }
+    return this.http.post(API_ENV.debug.url+"/transactions/add", body)
+      .pipe(map(result => result["transaction_id"]))
   }
 
   getTransactionTypes() {

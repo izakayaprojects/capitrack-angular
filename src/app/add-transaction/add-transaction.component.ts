@@ -3,6 +3,7 @@ import { Stock } from "../_models/transaction-item";
 import { Observable, of } from "rxjs";
 import { map, switchMap, catchError, debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import { MatDialogRef } from "@angular/material/dialog";
 
 import { TransactionType, TransactionItem } from "../_models/transaction-item"
 import { TransactionItemService } from "../transaction-item.service";
@@ -21,7 +22,8 @@ export class AddTransactionComponent implements OnInit {
     stock: "",
     amount: "",
     valuePerCount: "",
-    timestamp: ""
+    timestamp: "",
+    insertion: ""
   };
 
 	transactionTypes = [];
@@ -29,7 +31,10 @@ export class AddTransactionComponent implements OnInit {
 
 	@Input() newTransaction: TransactionItem = new TransactionItem("", "", 1, 1);
 
-  constructor(private tiService: TransactionItemService) {
+  constructor(
+    private tiService: TransactionItemService,
+    private dialogRef: MatDialogRef<AddTransactionComponent>
+    ) {
   }
 
   ngOnInit() {
@@ -61,7 +66,14 @@ export class AddTransactionComponent implements OnInit {
     }
 
     if (!hasError) {
-      // TODO prepare insertion
+      this.errorMsgs = { stock: "", amount: "", valuePerCount: "", timestamp: "", insertion: "" }
+      this.tiService.addTransaction(this.newTransaction).subscribe(result => {
+        if (result !== undefined || result !== null || result !== "") {
+          this.dialogRef.close({refresh: true});
+        } else {
+          this.errorMsgs.insertion = "Error adding transaction!"
+        }
+      })
     }
   }
 
