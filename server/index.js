@@ -63,6 +63,25 @@ app.post("/api/transactions", function(req, res) {
 	})
 })
 
+// UNTESTED
+app.post("/api/transactions/add", function(req, res) {
+	res.setHeader("Content-Type", "application/json");
+	auth.get_user(req.body.token).then(function(user) {
+		if (user._id) {
+			trx.add_transaction(user._id, req.body.type, req.body.isin, req.body.amount, req.body.value, req.body.timestamp).then(function(trx) {
+				res.status(200);
+				res.send(trx);
+			}).catch(function(err) {
+				res.status(401);
+				res.send(err);
+			})
+		} else {
+			res.status(401);
+			res.send({error: -1, message: "Token is invalid!"})
+		}
+	})
+})
+
 app.get("/api/stock/find", function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	trx.find_stock_by_name(req.query.search).then(function(stocks) {

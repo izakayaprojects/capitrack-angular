@@ -49,6 +49,10 @@ export class TransactionItemService {
       }))
   }
 
+  addTransaction(type: TransactionType, stock: Stock, timestamp: Date, amount: number, valuePerAmount: number) {
+    let token = this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN);
+  }
+
   getTransactionTypes() {
     return this.http.get(API_ENV.debug.url+"/transaction_types")
       .pipe(map(result => {
