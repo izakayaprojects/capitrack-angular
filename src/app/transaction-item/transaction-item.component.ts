@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { TransactionItem, TransactionType } from '../_models/transaction-item';
 import { TransactionItemService } from "../transaction-item.service";
 import { AddTransactionComponent } from "../add-transaction/add-transaction.component";
+import { AddStockComponent } from "../add-stock/add-stock.component";
 import { DeleteTransactionDialogComponent } from "../delete-transaction-dialog/delete-transaction-dialog.component";
 import { UserCredService } from "../user-cred.service";
 
@@ -20,6 +21,7 @@ export class TransactionItemComponent implements OnInit {
 
   private mDialogNewTransaction: MatDialogRef<AddTransactionComponent>;
   private mDialogDelTransaction: MatDialogRef<DeleteTransactionDialogComponent>;
+  private mDialogNewStock: MatDialogRef<AddStockComponent>;
 
   constructor(
     private tiService: TransactionItemService,
@@ -51,6 +53,13 @@ export class TransactionItemComponent implements OnInit {
         this.getTransactions();
       }
     })
+  }
+
+  showNewStockWindow() {
+    this.mDialogNewStock = this.dialog.open(AddStockComponent, {
+      height: "300px",
+      minWidth: "500px"
+    });
   }
 
   showNewTransactionWindow() {

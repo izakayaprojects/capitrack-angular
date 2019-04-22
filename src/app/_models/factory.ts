@@ -26,6 +26,14 @@ export class Factory {
 		return stock;
 	}
 
+	public createStockItemFromOpenFigi(isin: string, object: any): Stock {
+		let stock = new Stock();
+		stock.isin = isin;
+		stock.name = object["name"];
+		stock.isActive = true;
+		return stock;
+	}
+
 	public ngDateToJSDate(dt: NgbDate): Date {
 		return new Date(dt.year, dt.month-1, dt.day);
 	}

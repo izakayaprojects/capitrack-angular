@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/delete-transaction-dialog.component';
+import { AddStockComponent } from './add-stock/add-stock.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/de
     LoginComponent,
     NavigationComponent,
     AddTransactionComponent,
-    DeleteTransactionDialogComponent
+    DeleteTransactionDialogComponent,
+    AddStockComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/de
   bootstrap: [AppComponent],
   entryComponents: [
     AddTransactionComponent, 
-    DeleteTransactionDialogComponent
+    DeleteTransactionDialogComponent,
+    AddStockComponent
   ]
 })
 export class AppModule { }

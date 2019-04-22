@@ -1,0 +1,13 @@
+<div>
+	<h5>Add new Stock</h5>
+	<hr/>
+	<form class="form-inline">
+		<div class="form-group">
+	    	<label class="mr-3" for="isin">ISIN</label>
+		    <input type="text" class="form-control mr-3" id="isin" name="isin" 
+		    	[(ngModel)]="newStock.isin"/>
+		    <button class="btn btn-primary" (click)="checkStockByISIN(newStock.isin)">Check</button>
+		</div>
+	</form>
+	<div class="small text-danger">{{ stockCheckMessage }}</div>
+</div>
