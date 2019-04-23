@@ -9,14 +9,19 @@
 		    <button class="btn btn-primary mr-2" 
 		    	(click)="checkStockByISIN(isinInput)" 
 		    	*ngIf="!newStockFound" [disabled]="isSearchingForStock">
-  				<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" 
+  				<span class="spinner-border spinner-border-sm" role="searching_stock" aria-hidden="true" 
   					*ngIf="isSearchingForStock"></span>
   				Check
 		    </button>
 		    <button class="btn btn-primary mr-2" 
 		    	(click)="clearStock()" 
 		    	*ngIf="newStockFound">Edit</button>
-		    <button class="btn btn-success" *ngIf="newStockFound" (click)="addStock()">Add</button>
+		    <button class="btn btn-success" *ngIf="newStockFound" (click)="addStock()" 
+		    	[disabled]="isAddingNewStock">
+  				<span class="spinner-border spinner-border-sm" role="adding_stock" aria-hidden="true" 
+  					*ngIf="isAddingNewStock"></span>
+  				Add
+  			</button>
 		</div>
 	</form>
 	<div class="small text-danger">{{ stockCheckMessage }}</div>

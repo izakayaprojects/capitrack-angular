@@ -2,8 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 
 import { Stock } from "../_models/transaction-item";
+import { AlertType } from "../_models/alert";
 import { OpenfigiApiService } from "../openfigi-api.service";
 import { TransactionItemService } from "../transaction-item.service"
+import { MessagesService } from "../messages.service"
 
 @Component({
   selector: 'app-add-stock',
@@ -17,12 +19,14 @@ export class AddStockComponent implements OnInit {
   stockCheckMessage: string = ""
 
   isSearchingForStock = false
+  isAddingNewStock = false
   newStockFound = false
 
   constructor(
     private dialogRef: MatDialogRef<AddStockComponent>,
     private openFigi: OpenfigiApiService,
-    private tiService: TransactionItemService) { }
+    private tiService: TransactionItemService,
+    private messageService: MessagesService) { }
 
   ngOnInit() {
   }
@@ -34,7 +38,17 @@ export class AddStockComponent implements OnInit {
 
   addStock() {
     if (this.newStockFound !== null && this.newStockFound) {
-      // TODO add stock along with auth
+      this.isAddingNewStock = true
+      this.tiService.addStock(this.newStock).subscribe(result => {
+        if(result["success"]) {
+          this.messageService.alert(AlertType.Success, 
+            "Stock with ISIN "+result["isin"]+" is successfully added")
+          this.dialogRef.close()
+        } else {
+          this.stockCheckMessage = "Error adding new stock! Please try again later"
+        }
+        this.isAddingNewStock = false
+      })
     }
   }
 

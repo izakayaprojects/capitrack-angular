@@ -98,5 +98,18 @@ module.exports = {
 
 	add_stock: function(isin, name, market, secType, secType2) {
 		// TODO add stock to db
+		return new Promise(function(res, rej) {
+			let query = "INSERT INTO tbl_isin (isin,name,market_sector,security_type,security_type2) VALUES (?,?,?,?,?)";
+			mysql.connection.query(query, [isin, name, market, secType, secType2], function(err, results) {
+				if (err) {
+					rej({error: -2, message: "Error adding new stock!"})
+				} else {
+					res({success: true, 
+						isin: isin, 
+						newly_added: results.affectedRows
+					})
+				}
+			})
+		})
 	}
 }

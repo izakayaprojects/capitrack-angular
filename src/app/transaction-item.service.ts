@@ -61,6 +61,18 @@ export class TransactionItemService {
       }))
   }
 
+  addStock(stock: Stock) {
+    let body = {
+      token: this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN),
+      isin: stock.isin,
+      name: stock.name,
+      market_sector: stock.marketSector,
+      security_type: stock.securityType,
+      security_type2: stock.securityType2
+    }
+    return this.http.post(API_ENV.debug.url+"/stock/add", body)
+  }
+
   addTransaction(trx: TransactionItem) {
     let body = {
       token: this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN),
