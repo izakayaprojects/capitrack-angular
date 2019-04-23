@@ -23,6 +23,11 @@ export class UserCredService {
 		);
   }
 
+  logout() {
+    let token = this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN);
+    return this.http.post(API_ENV.debug.url+"/logout", {token: token});
+  }
+
   get_active_user() {
     let token = this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN);
     return this.check_token_validity(token).pipe(flatMap(validity => {

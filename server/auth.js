@@ -26,6 +26,15 @@ module.exports = {
 		})
 	},
 
+	logout: function(token) {
+		var query = "DELETE FROM tbl_user_auth WHERE auth_key = ?";
+		return new Promise(function(resolve, reject){
+			mysql.connection.query(query, [token], function(err, results) {
+				resolve({})
+			})
+		})
+	},
+
 	get_user: function(token) {
 		return new Promise(function(resolve, reject) {
 			let query = "SELECT user._id, user.email, user.first_name, user.last_name, user.role, user.is_active"+

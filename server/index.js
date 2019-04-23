@@ -143,6 +143,14 @@ app.post("/api/token_validity", function(req, res) {
 	})
 })
 
+app.post("/api/logout", function(req, res) {
+	res.setHeader("Content-Type", "application/json");
+	auth.logout(req.body.token).then(function(result) {
+		res.status(200);
+		res.send({})
+	})
+})
+
 app.post("/api/login", function(req, res) {
 	var email = req.body.email;
 	var pass = req.body.password;

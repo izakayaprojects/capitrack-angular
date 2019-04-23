@@ -4,3 +4,7 @@
 	border-color: darkgreen;
 	background-color: #b2f3b2;
 }
+
+.pointer {
+	cursor: pointer;
+}
