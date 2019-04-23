@@ -17,22 +17,23 @@ export class OpenfigiApiService {
 
   constructor(private http: HttpClient) { }
 
-  getStockByISIN(isin: string) {
+  getStockByISIN(isin: string): Observable<Stock> {
   	let body = [{
   		idType: "ID_ISIN",
   		idValue: isin
   	}]
   	return this.http.post(PROXY+API_PATH, body).pipe(
 			map(result => {
+				console.log(result);
 				let resBody = result[0];
 				if (resBody["error"]) {
-					return {};
+					return null;
 				} else {
 					let first = resBody["data"][0]
 					return FACTORY.createStockItemFromOpenFigi(isin, first);
 				}
 			}),
-			catchError(() => of({}))
+			catchError(() => of(null))
   	);
   }
 

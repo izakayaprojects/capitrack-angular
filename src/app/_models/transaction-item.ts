@@ -11,6 +11,9 @@ export class Stock {
 	isin: string;
 	name: string;
 	isActive: boolean = true;
+	marketSector: string;
+	securityType: string;
+	securityType2: string;
 
 	constructor() { }
 }

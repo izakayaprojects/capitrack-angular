@@ -5,9 +5,28 @@
 		<div class="form-group">
 	    	<label class="mr-3" for="isin">ISIN</label>
 		    <input type="text" class="form-control mr-3" id="isin" name="isin" 
-		    	[(ngModel)]="newStock.isin"/>
-		    <button class="btn btn-primary" (click)="checkStockByISIN(newStock.isin)">Check</button>
+		    	[(ngModel)]="isinInput" [readonly]="newStockFound"/>
+		    <button class="btn btn-primary mr-2" 
+		    	(click)="checkStockByISIN(isinInput)" 
+		    	*ngIf="!newStockFound" [disabled]="isSearchingForStock">
+  				<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" 
+  					*ngIf="isSearchingForStock"></span>
+  				Check
+		    </button>
+		    <button class="btn btn-primary mr-2" 
+		    	(click)="clearStock()" 
+		    	*ngIf="newStockFound">Edit</button>
+		    <button class="btn btn-success" *ngIf="newStockFound" (click)="addStock()">Add</button>
 		</div>
 	</form>
 	<div class="small text-danger">{{ stockCheckMessage }}</div>
+
+	<div class="card mt-2 bg-light" *ngIf="newStock !== null">
+		<div class="card-body">
+		    <div id="stockName"><b>Name: </b>{{newStock.name}}</div>
+		    <div id="securityType"><b>Security: </b>{{newStock.securityType}}, {{newStock.securityType2}}
+		    </div>
+		    <div id="marketSector"><b>Market: </b>{{newStock.marketSector}}</div>
+		</div>
+	</div>
 </div>

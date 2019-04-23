@@ -3,6 +3,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 
 import { Stock } from "../_models/transaction-item";
 import { OpenfigiApiService } from "../openfigi-api.service";
+import { TransactionItemService } from "../transaction-item.service"
 
 @Component({
   selector: 'app-add-stock',
@@ -11,32 +12,57 @@ import { OpenfigiApiService } from "../openfigi-api.service";
 })
 export class AddStockComponent implements OnInit {
 
-	@Input() newStock: Stock = {
-		isin: "",
-		name: "",
-		isActive: true
-	};
+	@Input() newStock: Stock = null;
+  isinInput = ""
   stockCheckMessage: string = ""
+
+  isSearchingForStock = false
+  newStockFound = false
 
   constructor(
     private dialogRef: MatDialogRef<AddStockComponent>,
-    private openFigi: OpenfigiApiService) { }
+    private openFigi: OpenfigiApiService,
+    private tiService: TransactionItemService) { }
 
   ngOnInit() {
   }
 
+  clearStock() {
+    this.newStockFound = false
+    this.newStock = null
+  }
+
+  addStock() {
+    if (this.newStockFound !== null && this.newStockFound) {
+      // TODO add stock along with auth
+    }
+  }
+
   checkStockByISIN(isin: string) {
+    this.isSearchingForStock = true
     this.stockCheckMessage = "";
     if (isin === undefined || isin === "") {
       this.stockCheckMessage = "Cannot check empty ISIN!";
+      this.isSearchingForStock = false
       return;
     }
-    // TODO check local DB first
-    this.openFigi.getStockByISIN(isin).subscribe(stock => {
-      if (stock["name"] === undefined) {
-        this.stockCheckMessage = "Invalid ISIN!";
+
+    this.tiService.getStockByISIN(isin).subscribe(fromDb => {
+      if (fromDb != null) {
+        this.stockCheckMessage = "Stock has already been registered!"
+        this.newStock = fromDb
+        this.isSearchingForStock = false
       } else {
-        // TODO display the info
+        this.openFigi.getStockByISIN(isin).subscribe(stock => {
+          if (stock === null) {
+            this.newStock = null
+            this.stockCheckMessage = "Invalid ISIN!";
+          } else {
+            this.newStock = stock
+            this.newStockFound = true
+          }
+          this.isSearchingForStock = false
+        })
       }
     })
 

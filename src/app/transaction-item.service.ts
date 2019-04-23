@@ -49,6 +49,18 @@ export class TransactionItemService {
       }))
   }
 
+  getStockByISIN(isin: string): Observable<Stock> {
+    return this.http.get(API_ENV.debug.url+"/stock/get/"+isin)
+      .pipe(map(result => {
+        let data = result["data"];
+        if (data === undefined || data === null || data.length == 0) {
+          return null
+        } else {
+          return FACTORY.createStockItem(data[0])
+        }
+      }))
+  }
+
   addTransaction(trx: TransactionItem) {
     let body = {
       token: this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN),

@@ -22,6 +22,9 @@ export class Factory {
 		let stock = new Stock();
 		stock.isin = object["isin"];
 		stock.name = object["name"];
+		stock.marketSector = object["market_sector"];
+		stock.securityType = object["security_type"];
+		stock.securityType2 = object["security_type2"];
 		stock.isActive = object["is_active"] === 1;
 		return stock;
 	}
@@ -30,6 +33,9 @@ export class Factory {
 		let stock = new Stock();
 		stock.isin = isin;
 		stock.name = object["name"];
+		stock.marketSector = object["marketSector"];
+		stock.securityType = object["securityType"];
+		stock.securityType2 = object["securityType2"];
 		stock.isActive = true;
 		return stock;
 	}

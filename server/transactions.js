@@ -85,5 +85,18 @@ module.exports = {
 				res({data: results});
 			})
 		})
+	},
+
+	get_stock_by_isin: function(isin) {
+		return new Promise(function(res, rej) {
+			let query = "SELECT * from tbl_isin WHERE isin = ?";
+			mysql.connection.query(query, [isin], function(err, results) {
+				res({data: results});
+			})
+		})
+	},
+
+	add_stock: function(isin, name, market, secType, secType2) {
+		// TODO add stock to db
 	}
 }

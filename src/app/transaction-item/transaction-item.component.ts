@@ -58,7 +58,7 @@ export class TransactionItemComponent implements OnInit {
   showNewStockWindow() {
     this.mDialogNewStock = this.dialog.open(AddStockComponent, {
       height: "300px",
-      minWidth: "500px"
+      minWidth: "600px"
     });
   }
 

@@ -108,6 +108,14 @@ app.get("/api/stock/find", function(req, res) {
 	})
 })
 
+app.get("/api/stock/get/:isin", function(req, res) {
+	res.setHeader("Content-Type", "application/json");
+	trx.get_stock_by_isin(req.params.isin).then(function(stocks) {
+		res.status(200);
+		res.send(stocks);
+	})
+})
+
 app.post("/api/token_validity", function(req, res) {
 	res.setHeader("Content-Type", 'application/json');
 	auth.is_token_valid(req.body.token).then(function(tokenInfo) {
