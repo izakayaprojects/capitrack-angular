@@ -2,5 +2,68 @@
 	<app-navigation [currentNavigation]="'Dashboard'"></app-navigation>
 </div>
 
-<div class="container">
+<div class="container mt-3">
+
+	<div class="card bg-light">
+		<div class="card-body">
+			<h5 class="card-title">Summary of Transactions</h5>
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group mr-2" role="group">
+					<button class="btn btn-primary">
+						All <span class="badge badge-light">25</span>
+					</button>
+				</div>
+				<div class="btn-group flex-wrap" role="group">
+					<button class="btn bg-deposit">
+						Deposit <span class="badge badge-light">5</span>
+					</button>
+					<button class="btn bg-buy">
+						Buy <span class="badge badge-light">5</span>
+					</button>
+					<button class="btn bg-dividend">
+						Dividend <span class="badge badge-light">5</span>
+					</button>
+					<button class="btn bg-sell">
+						Sell <span class="badge badge-light">5</span>
+					</button>
+					<button class="btn bg-fee">
+						Fee <span class="badge badge-light">5</span>
+					</button>
+					<button class="btn bg-payout">
+						Payout <span class="badge badge-light">5</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm card mt-2 mr-1 bg-light">
+			<div class="card-body">
+				<h5 class="card-title">Summary of <span class="badge bg-deposit">Deposit</span></h5>
+				<div>
+					<table class="table table-sm">
+						<tr>
+							<td><b>Number of transactions</b></td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td><b>Highest</b></td>
+							<td>€ 1200 - 15.Nov.2019</td>
+						</tr>
+						<tr>
+							<td><b>Lowest</b></td>
+							<td>€ 300 - 12.Feb.2019</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm card mt-2 ml-1 bg-light">
+			<div class="card-body">
+				<h5 class="card-title">Chart of <span class="badge bg-deposit">Deposit</span></h5>
+			</div>
+		</div>
+	</div>
 </div>
