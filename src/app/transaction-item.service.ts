@@ -24,7 +24,7 @@ export class TransactionItemService {
     private http: HttpClient,
     private localStorage: LocalStorageService) { }
 
-  getTransactions() {
+  getTransactions(): Observable<TransactionItem[]> {
     let token = this.localStorage.retrieve(CONSTANTS.LSKEY_TOKEN);
     return this.http.post(API_ENV.debug.url+"/transactions", {token: token})
       .pipe(map(result => {

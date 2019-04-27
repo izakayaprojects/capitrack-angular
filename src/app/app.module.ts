@@ -18,6 +18,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/delete-transaction-dialog.component';
 import { AddStockComponent } from './add-stock/add-stock.component';
+import { FilterByType } from "./_filters/transaction-items";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddStockComponent } from './add-stock/add-stock.component';
     NavigationComponent,
     AddTransactionComponent,
     DeleteTransactionDialogComponent,
-    AddStockComponent
+    AddStockComponent,
+    FilterByType
   ],
   imports: [
     BrowserModule,

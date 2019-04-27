@@ -7,30 +7,42 @@
 	<div class="card bg-light">
 		<div class="card-body">
 			<h5 class="card-title">Summary of Transactions</h5>
-			<div class="btn-toolbar" role="toolbar">
+			<div class="btn-toolbar" role="toolbar" *ngIf="transactions">
 				<div class="btn-group mr-2" role="group">
 					<button class="btn btn-primary">
-						All <span class="badge badge-light">25</span>
+						All <span class="badge badge-light">{{ transactions?.length }}</span>
 					</button>
 				</div>
 				<div class="btn-group flex-wrap" role="group">
 					<button class="btn bg-deposit">
-						Deposit <span class="badge badge-light">5</span>
+						Deposit <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Deposit).length }}
+						</span>
 					</button>
 					<button class="btn bg-buy">
-						Buy <span class="badge badge-light">5</span>
+						Buy <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Buy).length }}
+						</span>
 					</button>
 					<button class="btn bg-dividend">
-						Dividend <span class="badge badge-light">5</span>
+						Dividend <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Dividend).length }}
+						</span>
 					</button>
 					<button class="btn bg-sell">
-						Sell <span class="badge badge-light">5</span>
+						Sell <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Sell).length }}
+						</span>
 					</button>
 					<button class="btn bg-fee">
-						Fee <span class="badge badge-light">5</span>
+						Fee <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Fee).length }}
+						</span>
 					</button>
 					<button class="btn bg-payout">
-						Payout <span class="badge badge-light">5</span>
+						Payout <span class="badge badge-light">
+							{{ (transactions | filterByType: TType.Payout).length }}
+						</span>
 					</button>
 				</div>
 			</div>
