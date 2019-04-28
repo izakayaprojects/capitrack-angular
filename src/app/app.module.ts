@@ -19,6 +19,7 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { DeleteTransactionDialogComponent } from './delete-transaction-dialog/delete-transaction-dialog.component';
 import { AddStockComponent } from './add-stock/add-stock.component';
 import { FilterByType } from "./_filters/transaction-items";
+import { DashboardCategorySummaryComponent } from './dashboard-category-summary/dashboard-category-summary.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FilterByType } from "./_filters/transaction-items";
     AddTransactionComponent,
     DeleteTransactionDialogComponent,
     AddStockComponent,
-    FilterByType
+    FilterByType,
+    DashboardCategorySummaryComponent
   ],
   imports: [
     BrowserModule,

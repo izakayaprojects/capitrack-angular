@@ -25,9 +25,19 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.tiService.getTransactions().subscribe(result => 
+  	this.tiService.getTransactions().subscribe(result => {
   		this.transactions = result
-  	)
+      this.setTransactionsFilter(this.viewType)
+    })
+  }
+
+  setTransactionsFilter(type) {
+    this.viewType = type;
+    if (this.viewType === 0) {
+      this.filteredTransactions = this.transactions;
+    } else {
+      this.filteredTransactions = this.transactions.filter(t => t.type === this.viewType);
+    }
   }
 
 }

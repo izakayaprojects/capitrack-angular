@@ -1,0 +1,24 @@
+<div class="card-body" *ngIf="transactions && ttype !== -1">
+	<h5 class="card-title">
+		Summary of <span class="badge" [ngClass]="getBadgeClass()">{{ getSummaryHeader() }}</span>
+	</h5>
+	<div>
+		<table class="table table-sm">
+			<tr>
+				<td><b>Transactions</b></td>
+				<td>{{ transactions.length }}</td>
+			</tr>
+			<tr *ngIf="highestValueTrx">
+				<td><b>Highest</b></td>
+				<td>€ {{ highestValueTrx.getTotalValue() }} - 
+					{{ highestValueTrx.timestamp | date:'d.MMM.y' }}
+				</td>
+			</tr>
+			<tr *ngIf="lowestValueTrx">
+				<td><b>Lowest</b></td>
+				<td>€ {{ lowestValueTrx.getTotalValue() }} - 
+					{{ lowestValueTrx.timestamp | date:'d.MMM.y' }}</td>
+			</tr>
+		</table>
+	</div>
+</div>

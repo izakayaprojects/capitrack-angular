@@ -36,6 +36,8 @@ export class TransactionItem {
 		this.stock.isin = isin;
 	}
 
+	public getTotalValue(): number { return this.amount * this.valuePerAmount }
+
 	public needStock(): boolean {
 		return this.type === TransactionType.Buy || this.type === TransactionType.Dividend || this.type === TransactionType.Sell;
 	}
